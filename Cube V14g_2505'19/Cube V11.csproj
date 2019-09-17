@@ -86,6 +86,7 @@
     <Compile Include="Entities\Body\BodyParametrs.cs" />
     <Compile Include="Entities\ChartViewerStrain.cs" />
     <Compile Include="Entities\ChartViewerStress.cs" />
+    <Compile Include="Entities\LayersList.cs" />
     <Compile Include="Entities\NodeStressStrainModel.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -104,6 +105,12 @@
     </Compile>
     <Compile Include="Forms\Graphic\DrawingStatistic.Designer.cs">
       <DependentUpon>DrawingStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Graphic\Layers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Graphic\Layers.Designer.cs">
+      <DependentUpon>Layers.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Graphic\Matrix.cs">
       <SubType>Form</SubType>
@@ -178,6 +185,9 @@
     <EmbeddedResource Include="Forms\Graphic\DrawingStatistic.resx">
       <DependentUpon>DrawingStatistic.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Graphic\Layers.resx">
+      <DependentUpon>Layers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Graphic\Matrix.resx">
       <DependentUpon>Matrix.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +211,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Forms\NandM\ResearchNandMForm.resx">
       <DependentUpon>ResearchNandMForm.cs</DependentUpon>
@@ -222,7 +233,30 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Axes.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emptyCoube.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LNCoube.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LVCoube.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NOCoube.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNCoube.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PVCoube.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VOCoube.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -117,29 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Axes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Axes.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="emptyCoube" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\emptyCoube.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LNCoube" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LNCoube.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LVCoube" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LVCoube.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NOCoube" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NOCoube.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PNCoube" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PNCoube.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PVCoube" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PVCoube.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="VOCoube" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VOCoube.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

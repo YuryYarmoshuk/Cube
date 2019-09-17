@@ -21,11 +21,11 @@ namespace Cube_V11
         public double webDensity; // плотность сетки
         public double tlCurrent;
         
-        public static readonly double el = 59.03912785300745;
-        public static readonly double tl = 2.9519563926503731;
+        //public static readonly double el = 59.03912785300745;
+        //public static readonly double tl = 2.9519563926503731;
 
-        //public static readonly double el = 59.03912785300745 * 2;
-        //public static readonly double tl = 2.9519563926503731 * 2;
+        public static readonly double el = 59.03912785300745 * 4;
+        public static readonly double tl = 2.9519563926503731 * 4;
 
         public List<object[]> nodeLists;
        

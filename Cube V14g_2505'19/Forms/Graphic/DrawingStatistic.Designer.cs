@@ -88,6 +88,7 @@
             this.hScrollBar2 = new System.Windows.Forms.HScrollBar();
             this.cartesianChart2 = new LiveCharts.WinForms.CartesianChart();
             this.button2 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -935,11 +936,24 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.button7.Location = new System.Drawing.Point(520, 509);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(131, 23);
+            this.button7.TabIndex = 10;
+            this.button7.Text = "Уровни";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // DrawingStatistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 541);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button5);
@@ -1041,5 +1055,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button7;
     }
 }

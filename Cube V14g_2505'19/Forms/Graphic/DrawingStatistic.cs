@@ -873,5 +873,11 @@ namespace Cube_V11.Forms
             Matrix matrix = new Matrix(listNode);
             matrix.ShowDialog();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Layers layers = new Layers(listNode);
+            layers.ShowDialog();
+        }
     }
 }
