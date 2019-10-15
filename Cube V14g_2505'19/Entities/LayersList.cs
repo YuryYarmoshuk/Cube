@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cube_V11.Entities
 {
-    class LayersList
+    public class LayersList
     {
         private List<List<Node>> layers;
 

@@ -88,6 +88,14 @@
     <Compile Include="Entities\ChartViewerStress.cs" />
     <Compile Include="Entities\LayersList.cs" />
     <Compile Include="Entities\NodeStressStrainModel.cs" />
+    <Compile Include="Entities\Points\Actions.cs" />
+    <Compile Include="Entities\Points\Line.cs" />
+    <Compile Include="Entities\Points\Point2D.cs" />
+    <Compile Include="Entities\Points\Point3D.cs" />
+    <Compile Include="Entities\Points\Polygon.cs" />
+    <Compile Include="Entities\TriangleSearcher.cs" />
+    <Compile Include="Entities\Triangles\Triangle.cs" />
+    <Compile Include="Entities\Triangles\TriangleTable.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +131,18 @@
     </Compile>
     <Compile Include="Forms\NodeViewer.Designer.cs">
       <DependentUpon>NodeViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Points3D\Points3dMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Points3D\Points3dMain.Designer.cs">
+      <DependentUpon>Points3dMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Points3D\PointView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Points3D\PointView.Designer.cs">
+      <DependentUpon>PointView.cs</DependentUpon>
     </Compile>
     <Compile Include="NAngleEmprovedForm.cs">
       <SubType>Form</SubType>
@@ -199,6 +219,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NodeViewer.resx">
       <DependentUpon>NodeViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Points3D\Points3dMain.resx">
+      <DependentUpon>Points3dMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Points3D\PointView.resx">
+      <DependentUpon>PointView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NAngleEmprovedForm.resx">
       <DependentUpon>NAngleEmprovedForm.cs</DependentUpon>

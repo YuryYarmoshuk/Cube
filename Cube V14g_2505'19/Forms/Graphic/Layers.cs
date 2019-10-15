@@ -1,4 +1,5 @@
 ﻿using Cube_V11.Entities;
+using Cube_V11.Forms.Points3D;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace Cube_V11.Forms.Graphic
             pictureBox1.Image = Properties.Resources.emptyCoube;
             pictureBox2.Image = Properties.Resources.Axes;
 
+            radioButton4.Checked = false;
             radioButton4.Checked = false;
         }
 
@@ -184,6 +186,8 @@ namespace Cube_V11.Forms.Graphic
 
         private void button1_Click(object sender, EventArgs e)
         {
+            hScrollBar1.Value = 0;
+
             if (radioButton1.Checked == true ||
                 radioButton2.Checked == true ||
                 radioButton3.Checked == true &&
@@ -193,6 +197,7 @@ namespace Cube_V11.Forms.Graphic
                 SeporateNodes(GetAxis());
                 ShowLayers();
                 hScrollBar1.Maximum = _layers.GetLayersCount() + 8;
+                button2.Enabled = true;
             }
         }
 
@@ -331,6 +336,7 @@ namespace Cube_V11.Forms.Graphic
                     }
                     else
                     {
+                        layer.Add(_nodes[0][i]);
                         _layers.AddLayer(layer);
                         layer = new List<Node>();
                     }
@@ -343,6 +349,7 @@ namespace Cube_V11.Forms.Graphic
                     }
                     else
                     {
+                        layer.Add(_nodes[0][i]);
                         _layers.AddLayer(layer);
                         layer = new List<Node>();
                     }
@@ -355,10 +362,17 @@ namespace Cube_V11.Forms.Graphic
                     }
                     else
                     {
+                        layer.Add(_nodes[0][i]);
                         _layers.AddLayer(layer);
                         layer = new List<Node>();
                     }
-                }                
+                } 
+                
+                if (i + 1 >= _nodes[0].Count - 1)
+                {
+                    layer.Add(_nodes[0][i+1]);
+                    _layers.AddLayer(layer);
+                }
             }
         }
 
@@ -367,6 +381,17 @@ namespace Cube_V11.Forms.Graphic
             ind = hScrollBar1.Value;
             ShowLayers();
             label1.Text = String.Format("{0} из {1}", ind, _layers.GetLayersCount() - 1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Points3dMain points3D = new Points3dMain(_nodes[0], _layers);
+            points3D.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //DO TRIANGLE
         }
     }
 }
