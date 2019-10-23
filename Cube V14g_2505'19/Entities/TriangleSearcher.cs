@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cube_V11.Entities
 {
     class TriangleSearcher
     {
         private List<List<double>> matrix = new List<List<double>>();
+        private List<List<double>> tempMatrix = new List<List<double>>();
         private TriangleTable triangleTable;
         private List<int> connectedNode = new List<int>();
         private List<double> connectedNodeDistance = new List<double>();
@@ -21,8 +23,25 @@ namespace Cube_V11.Entities
 
         public void Search(List<Node> nodes)
         {
+            triangleTable.ClearTriangles();
             SetDistanceMatrix(nodes);
+            CopyMatrix();
             TriangleSearch();
+        }
+
+        private void CopyMatrix()
+        {
+            tempMatrix.Clear();
+
+            for (int i = 0; i < matrix.Count; i++)
+            {
+                tempMatrix.Add(new List<double>());
+                for (int j = 0; j < matrix.Count; j++)
+                {
+
+                    tempMatrix[i].Add(matrix[i][j]);
+                }
+            }
         }
 
         public TriangleTable GetTriangleTable()
@@ -32,7 +51,8 @@ namespace Cube_V11.Entities
 
         private void SetDistanceMatrix(List<Node> nodes)
         {
-            int count = nodes.Count - 1;
+            int count = nodes.Count;
+            matrix.Clear();
 
             for (int i = 0; i < count; i++)
             {
@@ -53,73 +73,114 @@ namespace Cube_V11.Entities
 
         private void TriangleSearch()
         {
-            double min = 0;
+            int v1 = 0;
 
-            int V1 = 1;
+            double primaMin;
+            
+            double min;
+            int v2;
 
-            //В цикле
-            int ind = 0;
-
-            min = MinValue(matrix[ind]);
-
-            Triangle triangle = new Triangle();
-
-            triangle.V1 = V1;
-            triangle.V2 = IndSearch(min, matrix[ind]) + 1;
-
-            MatrixZeroing(triangle.V2 - 1, ind);
-
-            min = MinValue(matrix[triangle.V2 - 1]);
-
-            ConnectedNodeSearch(triangle.V2 - 1, min);
-
-            ConnectedNodeDistanceSearch(triangle.V1 - 1);
-
-            /*foreach(double val in connectedNode)
+            for (int jV1 = 0; jV1 < tempMatrix.Count; jV1++)
             {
-                labelText = labelText + " " + val;
-            }*/
+                v1 = jV1;
+                primaMin = MinValue(tempMatrix[v1]);
+                CopyMatrix();
 
-            if (connectedNodeDistance.Count >= 2)
-            {
-                if (connectedNodeDistance.Count == 2)
+                for (int i = 0; i < tempMatrix[v1].Count; i++)
                 {
-                    if (connectedNodeDistance[0] == connectedNodeDistance[1])
-                    {
-                        triangle.V3 = connectedNode[0] + 1;
-                        if (!triangleTable.CheckTriangle(triangle.V1, triangle.V2, triangle.V3))
-                        {
-                            triangleTable.AddTriangle(triangle);
-                            MatrixZeroing(ind, triangle.V3 - 1);
-                        }
+                    min = MinValue(tempMatrix[v1]);
 
-                        Triangle triangleNext = new Triangle();
-                        triangleNext.V1 = triangle.V1;
-                        triangleNext.V2 = triangle.V2;
-                        triangleNext.V3 = connectedNode[1] + 1; ;
-                        if (!triangleTable.CheckTriangle(triangle.V1, triangle.V2, triangle.V3))
-                        {
-                            triangleTable.AddTriangle(triangleNext);
-                            MatrixZeroing(ind, triangleNext.V3 - 1);
-                        }
-
-                        MatrixZeroing(ind, triangle.V1 - 1);
-                    }
-                    else
+                    if (min <= primaMin + primaMin * 0.5 && min >= primaMin - primaMin * 0.5)
                     {
-                        //search min
+                        v2 = IndSearch(min, tempMatrix[v1]);
+                        MatrixZeroing(v1, v2);
+                        MatrixZeroing(v2, v1);
+
+                        connectedNode.Add(v2);
                     }
                 }
-            }
-            else
-            {
-                triangle.V3 = connectedNode[0] + 1;
-                if (!triangleTable.CheckTriangle(triangle.V1, triangle.V2, triangle.V3))
+
+                for (int i = 0; i < connectedNode.Count - 1; i++)
                 {
-                    triangleTable.AddTriangle(triangle);
-                    MatrixZeroing(triangle.V3 - 1, ind);
+                    Triangle tr = new Triangle();
+                    tr.V1 = v1 + 1;
+                    tr.V2 = connectedNode[i] + 1;
+                    tr.V3 = connectedNode[i + 1] + 1;
+
+                    if (triangleTable.CheckTriangle(tr.V1, tr.V2, tr.V3))
+                    {
+                        triangleTable.AddTriangle(tr);
+                    }
                 }
+
+                connectedNode.Clear();
             }
+            
+            //int V1 = v1;
+
+            ////В цикле
+            //int ind = 0;
+
+            //min = MinValue(matrix[ind]);
+
+            //Triangle triangle = new Triangle();
+
+            //triangle.V1 = V1;
+            //triangle.V2 = IndSearch(min, matrix[ind]) + 1;
+
+            //MatrixZeroing(triangle.V2 - 1, ind);
+
+            //min = MinValue(matrix[triangle.V2 - 1]);
+
+            //ConnectedNodeSearch(triangle.V2 - 1, min);
+
+            //ConnectedNodeDistanceSearch(triangle.V1 - 1);
+
+            ///*foreach(double val in connectedNode)
+            //{
+            //    labelText = labelText + " " + val;
+            //}*/
+
+            //if (connectedNodeDistance.Count >= 2)
+            //{
+            //    if (connectedNodeDistance.Count == 2)
+            //    {
+            //        if (connectedNodeDistance[0] == connectedNodeDistance[1])
+            //        {
+            //            triangle.V3 = connectedNode[0] + 1;
+            //            if (!triangleTable.CheckTriangle(triangle.V1, triangle.V2, triangle.V3))
+            //            {
+            //                triangleTable.AddTriangle(triangle);
+            //                MatrixZeroing(ind, triangle.V3 - 1);
+            //            }
+
+            //            Triangle triangleNext = new Triangle();
+            //            triangleNext.V1 = triangle.V1;
+            //            triangleNext.V2 = triangle.V2;
+            //            triangleNext.V3 = connectedNode[1] + 1; ;
+            //            if (!triangleTable.CheckTriangle(triangle.V1, triangle.V2, triangle.V3))
+            //            {
+            //                triangleTable.AddTriangle(triangleNext);
+            //                MatrixZeroing(ind, triangleNext.V3 - 1);
+            //            }
+
+            //            MatrixZeroing(ind, triangle.V1 - 1);
+            //        }
+            //        else
+            //        {
+            //            //search min
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    triangle.V3 = connectedNode[0] + 1;
+            //    if (!triangleTable.CheckTriangle(triangle.V1, triangle.V2, triangle.V3))
+            //    {
+            //        triangleTable.AddTriangle(triangle);
+            //        MatrixZeroing(triangle.V3 - 1, ind);
+            //    }
+            //}
         }
 
         private double MinValue(List<double> list)
@@ -157,9 +218,12 @@ namespace Cube_V11.Entities
 
         private int FirstIndSearch(List<double> list)
         {
-            if (list[0] == 0)
+            for (int i = 0; i < list.Count; i++)
             {
-                return 1;
+                if (list[i] != 0)
+                {
+                    return i;
+                }
             }
 
             return 0;
@@ -182,7 +246,7 @@ namespace Cube_V11.Entities
 
         private void MatrixZeroing(int i, int j)
         {
-            matrix[i][j] = 0;
+            tempMatrix[i][j] = 0;
         }
 
         private void ConnectedNodeSearch(int ind, double min)

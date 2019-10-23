@@ -62,15 +62,13 @@ namespace Cube_V11.Forms.Points3D
 
         private void RotateSetup()
         {
-            
+            hScrollBar1.Maximum = 188;
+            hScrollBar2.Maximum = 188;
+            hScrollBar3.Maximum = 188;
 
-            hScrollBar1.Maximum = 368;
-            hScrollBar2.Maximum = 368;
-            hScrollBar3.Maximum = 368;
-
-            hScrollBar1.Value = hScrollBar1.Maximum / 2;
-            hScrollBar2.Value = hScrollBar1.Maximum / 2;
-            hScrollBar3.Value = hScrollBar1.Maximum / 2;
+            hScrollBar1.Minimum = -179;
+            hScrollBar2.Minimum = -179;
+            hScrollBar3.Minimum = -179;
 
             currentAngleX = hScrollBar1.Value;
             currentAngleY = hScrollBar2.Value;
@@ -335,10 +333,6 @@ namespace Cube_V11.Forms.Points3D
             currentAngleX = hScrollBar1.Value;
             currentAngleY = hScrollBar2.Value;
             currentAngleZ = hScrollBar3.Value;
-            
-            hScrollBar1.Value = hScrollBar1.Maximum / 2;
-            hScrollBar2.Value = hScrollBar1.Maximum / 2;
-            hScrollBar3.Value = hScrollBar1.Maximum / 2;
 
             textBox1.Text = "0";
             textBox2.Text = "0";

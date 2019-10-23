@@ -21,6 +21,11 @@ namespace Cube_V11.Entities.Triangles
             return triangles;
         }
 
+        public void ClearTriangles()
+        {
+            triangles.Clear();
+        }
+
         public bool CheckTriangle(int v1, int v2, int v3)
         {
             List<string> allV = new List<string>()
@@ -35,13 +40,16 @@ namespace Cube_V11.Entities.Triangles
 
             foreach (Triangle tr in triangles)
             {
-                if (allV.IndexOf(tr.GetAllV()) != 0)
+                foreach (string v in allV)
                 {
-                    return true;
+                    if (v.Equals(tr.GetAllV()))
+                    {
+                        return false;
+                    }
                 }
             }
 
-            return false;
+            return true;
         }
     }
 }

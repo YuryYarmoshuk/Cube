@@ -1,4 +1,5 @@
 ﻿using Cube_V11.Entities;
+using Cube_V11.Entities.Triangles;
 using Cube_V11.Forms.Points3D;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,10 @@ namespace Cube_V11.Forms.Graphic
     {
         private List<List<Node>> _nodes;
         private LayersList _layers;
+
+        private TriangleSearcher _triangleSearcher;
+        private TriangleTable _triangleTable;
+
         int ind = 0;
 
         public Layers(List<object[]> listNode)
@@ -25,6 +30,8 @@ namespace Cube_V11.Forms.Graphic
             _nodes = CreateListOfNode(listNode);
 
             _layers = new LayersList();
+
+            _triangleSearcher = new TriangleSearcher();
 
             pictureBox1.Image = Properties.Resources.emptyCoube;
             pictureBox2.Image = Properties.Resources.Axes;
@@ -198,6 +205,7 @@ namespace Cube_V11.Forms.Graphic
                 ShowLayers();
                 hScrollBar1.Maximum = _layers.GetLayersCount() + 8;
                 button2.Enabled = true;
+                button3.Enabled = true;
             }
         }
 
@@ -380,7 +388,8 @@ namespace Cube_V11.Forms.Graphic
         {
             ind = hScrollBar1.Value;
             ShowLayers();
-            label1.Text = String.Format("{0} из {1}", ind, _layers.GetLayersCount() - 1);
+            label1.Text = String.Format("Уровень: {0} из {1}", ind, _layers.GetLayersCount() - 1);
+            dataGridView2.DataSource = null;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -391,7 +400,9 @@ namespace Cube_V11.Forms.Graphic
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //DO TRIANGLE
+            _triangleSearcher.Search(_layers.GetLayer(ind));
+            _triangleTable = _triangleSearcher.GetTriangleTable();
+            dataGridView2.DataSource = _triangleTable.GetTriangles();
         }
     }
 }
