@@ -394,7 +394,16 @@ namespace Cube_V11.Forms.Graphic
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Points3dMain points3D = new Points3dMain(_nodes[0], _layers);
+            Points3dMain points3D;
+
+            if (!checkBox1.Checked)
+            {
+                points3D = new Points3dMain(_nodes[0], _layers);
+            }
+            else
+            {
+                points3D = new Points3dMain(_nodes[0], _layers, _triangleTable);
+            }
             points3D.ShowDialog();
         }
 
@@ -403,6 +412,7 @@ namespace Cube_V11.Forms.Graphic
             _triangleSearcher.Search(_layers.GetLayer(ind));
             _triangleTable = _triangleSearcher.GetTriangleTable();
             dataGridView2.DataSource = _triangleTable.GetTriangles();
+            checkBox1.Enabled = true;
         }
     }
 }

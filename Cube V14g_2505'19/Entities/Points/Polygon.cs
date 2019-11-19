@@ -14,7 +14,11 @@ namespace Cube_V11.Entities
 
         public Polygon()
         {
-            points3D = new List<Point3D>();
+            points3D = new List<Point3D>(3);
+            for (int i = 0; i < 3; i++)
+            {
+                points3D.Add(new Point3D());
+            }
             points2D = new List<Point2D>();
         }
 
@@ -45,8 +49,27 @@ namespace Cube_V11.Entities
             }
 
             gr.DrawLine(pen, points2D[i].x, points2D[i].y, points2D[0].x, points2D[0].y);
+        }
 
-            return ;
+        public void UpdatePoints(List<Point3D> points)
+        {
+            for (int i = 0; i < points3D.Count; i++)
+            {
+                points3D[i] = points.Where(p => p.GetIndex() == points3D[i].GetIndex()).First();
+            }
+        }
+
+        public bool HasPointWithIndex(int index)
+        {
+            foreach (Point3D point in points3D)
+            {
+                if (point.GetIndex() == index)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

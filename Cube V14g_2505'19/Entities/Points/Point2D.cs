@@ -9,6 +9,7 @@ namespace Cube_V11.Entities
     public class Point2D
     {
         public float x, y, k;
+        private int index;
         public int id;
 
         public Point2D()
@@ -29,6 +30,16 @@ namespace Cube_V11.Entities
             y = y1;
             k = k1;
             id = id1;
+        }
+
+        public void SetIndex(int index)
+        {
+            this.index = index;
+        }
+
+        public int GetIndex()
+        {
+            return index;
         }
     }
 }

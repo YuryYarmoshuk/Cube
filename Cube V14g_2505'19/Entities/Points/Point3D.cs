@@ -9,6 +9,7 @@ namespace Cube_V11.Entities
     public class Point3D
     {
         public float x, y, z, k, scale;
+        private int index;
         public int id;
 
         public Point3D()
@@ -40,6 +41,16 @@ namespace Cube_V11.Entities
             z = z1 * scale1;
             k = k1;
             scale = scale1;
+        }
+
+        public void SetIndex(int index)
+        {
+            this.index = index;
+        }
+
+        public int GetIndex()
+        {
+            return index;
         }
     }
 }

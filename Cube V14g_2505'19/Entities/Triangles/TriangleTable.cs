@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cube_V11.Entities.Triangles
 {
-    class TriangleTable
+    public class TriangleTable
     {
         private List<Triangle> triangles = new List<Triangle>();
 

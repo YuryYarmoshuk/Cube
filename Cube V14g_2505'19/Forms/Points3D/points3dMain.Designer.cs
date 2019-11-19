@@ -73,6 +73,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Полигоны";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -161,6 +162,7 @@
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Size = new System.Drawing.Size(203, 23);
             this.hScrollBar1.TabIndex = 11;
+            this.hScrollBar1.Visible = false;
             this.hScrollBar1.ValueChanged += new System.EventHandler(this.hScrollBar1_ValueChanged);
             // 
             // hScrollBar2
@@ -170,6 +172,7 @@
             this.hScrollBar2.Name = "hScrollBar2";
             this.hScrollBar2.Size = new System.Drawing.Size(203, 23);
             this.hScrollBar2.TabIndex = 12;
+            this.hScrollBar2.Visible = false;
             this.hScrollBar2.ValueChanged += new System.EventHandler(this.hScrollBar2_ValueChanged);
             // 
             // hScrollBar3
@@ -179,6 +182,7 @@
             this.hScrollBar3.Name = "hScrollBar3";
             this.hScrollBar3.Size = new System.Drawing.Size(203, 23);
             this.hScrollBar3.TabIndex = 13;
+            this.hScrollBar3.Visible = false;
             this.hScrollBar3.ValueChanged += new System.EventHandler(this.hScrollBar3_ValueChanged);
             // 
             // pictureBox1
@@ -189,6 +193,9 @@
             this.pictureBox1.Size = new System.Drawing.Size(555, 436);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // groupBox1
             // 

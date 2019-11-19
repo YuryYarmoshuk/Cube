@@ -144,6 +144,12 @@
     <Compile Include="Forms\Points3D\PointView.Designer.cs">
       <DependentUpon>PointView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Points3D\TriangleView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Points3D\TriangleView.Designer.cs">
+      <DependentUpon>TriangleView.cs</DependentUpon>
+    </Compile>
     <Compile Include="NAngleEmprovedForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Points3D\PointView.resx">
       <DependentUpon>PointView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Points3D\TriangleView.resx">
+      <DependentUpon>TriangleView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NAngleEmprovedForm.resx">
       <DependentUpon>NAngleEmprovedForm.cs</DependentUpon>

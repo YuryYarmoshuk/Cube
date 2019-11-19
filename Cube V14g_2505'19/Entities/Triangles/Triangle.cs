@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cube_V11.Entities.Triangles
 {
-    class Triangle
+    public class Triangle
     {
         public int N { get; set; }
         public int V1 { get; set; }

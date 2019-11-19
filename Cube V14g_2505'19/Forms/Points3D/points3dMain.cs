@@ -1,4 +1,5 @@
 ﻿using Cube_V11.Entities;
+using Cube_V11.Entities.Triangles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace Cube_V11.Forms.Points3D
         private double[,] matr = new double[4, 4];
         private static int x0, y0, z0;
         private Actions actions = new Actions();
+        private int prevX, prevY;
 
         private List<Polygon> polygons = new List<Polygon>();
 
@@ -30,6 +32,7 @@ namespace Cube_V11.Forms.Points3D
 
         private List<Node> _nodes;
         private LayersList _layersList;
+        private TriangleTable _triangleTable;
 
         private int currentAngleX;
         private int currentAngleY;
@@ -43,15 +46,32 @@ namespace Cube_V11.Forms.Points3D
             InitializeComponent();
 
             RotateSetup();
-            
+
+            Init(nodes, layersList);
+        }
+        
+        public Points3dMain(List<Node> nodes, LayersList layersList, TriangleTable triangleTable)
+        {
+            InitializeComponent();
+
+            RotateSetup();
+
+            Init(nodes, layersList);
+
+            _triangleTable = triangleTable;
+            button2.Enabled = true;
+        }
+
+        private void Init(List<Node> nodes, LayersList layersList)
+        {
             _nodes = nodes;
             _layersList = layersList;
 
             hScrollBar4.Maximum = layersList.GetLayersCount() + 8;
             layerInd = hScrollBar4.Value;
 
-            x0 = pictureBox1.Width/2;
-            y0 = pictureBox1.Height - pictureBox1.Height/3;
+            x0 = pictureBox1.Width / 2;
+            y0 = pictureBox1.Height - pictureBox1.Height / 3;
             z0 = 0;
 
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -204,24 +224,6 @@ namespace Cube_V11.Forms.Points3D
             {
                 gr.DrawEllipse(pen, point2D.x, point2D.y, 3, 3);
             }
-            /*
-            polygons = new List<Polygon>();
-
-            if (points3D.Count != 0)
-            {
-                polygons.Add(new Polygon(points3D.GetRange(0, 3)));
-                polygons.Add(new Polygon(points3D.GetRange(1, 3)));
-                polygons.Add(new Polygon((new List<Point3D>() { points3D[2], points3D[3], points3D[0] })));
-            }
-            */
-
-            //РИСУЕМ ПОЛИГОНЫ
-            /*
-            foreach (Polygon polygon in polygons)
-            {
-                polygon.DrawPolygon(gr, pen, x0, y0);
-            }
-            */
 
             //ВЫВОД ПОДПИСЕЙ
 
@@ -310,6 +312,76 @@ namespace Cube_V11.Forms.Points3D
                 currentAngleZ = hScrollBar3.Value;
 
                 RotateByZ(offset);
+            }
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            if (this.Focused)
+            {
+                pictureBox1.Focus();
+            }
+            pictureBox1.MouseWheel += PictureBox1_MouseWheel;
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            prevX = e.X;
+            prevY = e.Y;
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                points3D = actions.RotationByX(points3D, (prevY - e.Y));
+                points3D = actions.RotationByY(points3D, (prevX - e.X));
+                //points3D = actions.RotationByZ(points3D, angleByZ);
+
+                SetIndexes();
+                DrawFigure(bmp, gr, pen, Actions.GetCoord2D(points3D, x0, y0));
+
+                pictureBox1.Image = bmp;
+
+                prevX = e.X;
+                prevY = e.Y;
+
+                textBox1.Text = e.X.ToString();
+                textBox2.Text = e.Y.ToString(); ;
+            }
+        }
+
+        private void PictureBox1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta < 0)
+            {
+                points3D = actions.Scaling(points3D, 1.1, 1.1, 1.1);
+            }
+            else
+            {
+                points3D = actions.Scaling(points3D, 0.9, 0.9, 0.9);
+            }
+            SetIndexes();
+            DrawFigure(bmp, gr, pen, Actions.GetCoord2D(points3D, x0, y0));
+            textBox3.Text = e.Delta.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TriangleView triangleView = new TriangleView(_triangleTable);
+            triangleView.ShowDialog();
+        }
+
+        public void SetIndexes()
+        {
+            for (int i = 0; i < points3D.Count; i++)
+            {
+                points3D[i].SetIndex(i + 1);
+            }
+
+            for (int j = 0; j < points2D.Count; j++)
+            {
+                points2D[j].SetIndex(j + 1);
             }
         }
 
